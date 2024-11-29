@@ -2,9 +2,7 @@ name: Update Modules
 
 on:
   workflow_dispatch:  # Allows manual triggering
-on:
-  repository_dispatch:
-    types: update
+
 
 jobs:
   update:

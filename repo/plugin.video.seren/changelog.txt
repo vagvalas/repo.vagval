@@ -1,3 +1,9 @@
+Changelog 3.0.62
+[BUG] Optimised RD fix implementation
+[BUG] Improved RD season pack handling
+[BUG] Improved RD download handling when uncached
+[BUG] Improved RD file selection handling when uncached
+
 Changelog 3.0.61
 [BUG] Fix AD not deleting magnet if not cached
 

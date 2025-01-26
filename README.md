@@ -9,6 +9,6 @@ After a lot of trial and error this repo is refactored to fetch different versio
 
 Also every time the repository has an update it pushes it as "repository.vagval.zip" in the homeppage of this repository to always download the latest zip file, for someone to add it first time via url.
 
-TODO: Update the Repository to support the <19.0 kodi.
+~~TODO: Update the Repository to support the <19.0 kodi.~~
 
 ## BUGS

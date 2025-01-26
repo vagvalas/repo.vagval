@@ -233,6 +233,10 @@ class Generator:
                     zip.write(fullpath, archive_name, zipfile.ZIP_DEFLATED)
 
             zip.close()
+			# If this is the 'repository.vagval', move and rename the zip to the root directory
+            if addon_id == "repository.vagval":
+                root_zip_path = os.path.join(self.release_path, f"{addon_id}.zip")
+                shutil.copy(final_zip, root_zip_path)
             size = convert_bytes(os.path.getsize(final_zip))
             print(
                 "Zip created for {} ({}) - {}".format(

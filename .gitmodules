@@ -1,0 +1,3 @@
+[submodule "leia/plugin.video.seren"]
+	path = leia/plugin.video.seren
+	url = https://github.com/vagvalas/plugin.video.seren.git

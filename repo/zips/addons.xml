@@ -690,13 +690,18 @@
             Debrid account status now visible from Seren settings
         </news>
     </extension>
-</addon><addon id="repository.vagval" name="VagVal's repo" version="1.1" provider-name="vagvalas">
+</addon><addon id="repository.vagval" name="VagVal's repo" version="1.2" provider-name="vagvalas">
     <extension point="xbmc.addon.repository" name="VagVal Repository">
-        <dir>
-            <info compressed="false">https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/zips/</datadir>
-        </dir>
+		<dir minversion="18.0.0" maxversion="18.9.9">
+    <info compressed="false">https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/leia/zips/addons.xml</info>
+    <checksum>https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/leia/zips/addons.xml.md5</checksum>
+    <datadir zip="true">https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/leia/zips/</datadir>
+</dir>
+<dir minversion="19.0.0">
+    <info compressed="false">https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/matrix/zips/addons.xml</info>
+    <checksum>https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/matrix/zips/addons.xml.md5</checksum>
+    <datadir zip="true">https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/matrix/zips/</datadir>
+</dir>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>VagVal Repo</summary>

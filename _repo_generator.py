@@ -181,6 +181,10 @@ class Generator:
                     color_text(size, 'yellow'),
                 )
             )
+            # If this is the 'repository.vagval', move and rename the zip to the root directory
+            if addon_id == "repository.vagval":
+                root_zip_path = os.path.join(self.release_path, f"{addon_id}.zip")
+                shutil.copy(final_zip, root_zip_path)
 
     def _copy_meta_files(self, addon_id, addon_folder):
         """

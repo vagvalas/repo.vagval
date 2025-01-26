@@ -13,7 +13,7 @@ import zipfile
 from xml.etree import ElementTree
 
 SCRIPT_VERSION = 5
-KODI_VERSIONS = ["krypton", "leia", "matrix", "nexus", "repo"]  # Already includes leia and matrix
+KODI_VERSIONS = ["krypton", "leia", "matrix", "nexus", "repo"]
 IGNORE = [
     ".git",
     ".github",
@@ -283,22 +283,14 @@ class Generator:
             addons_xml = ElementTree.parse(addons_xml_path)
             addons_root = addons_xml.getroot()
 
-        # Combine main repo and "leia", "matrix" folders
-        all_folders = [
-            os.path.join(self.release_path, folder)
-            for folder in KODI_VERSIONS
-            if os.path.exists(os.path.join(self.release_path, folder))
+        folders = [
+            i
+            for i in os.listdir(self.release_path)
+            if os.path.isdir(os.path.join(self.release_path, i))
+            and i != "zips"
+            and not i.startswith(".")
+            and os.path.exists(os.path.join(self.release_path, i, "addon.xml"))
         ]
-        
-        folders = []
-        for folder in all_folders:
-            folders.extend([
-                i for i in os.listdir(folder)
-                if os.path.isdir(os.path.join(folder, i))
-                and i != "zips"
-                and not i.startswith(".")
-                and os.path.exists(os.path.join(folder, i, "addon.xml"))
-            ])
 
         addon_xpath = "addon[@id='{}']"
         changed = False

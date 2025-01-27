@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.program.vagval" version="1.5.0" name="VAGVAL's wizard" provider-name="vagvalas">
+<addon id="plugin.program.vagval" version="1.5.5" name="VAGVAL's wizard" provider-name="vagvalas">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
     </requires>

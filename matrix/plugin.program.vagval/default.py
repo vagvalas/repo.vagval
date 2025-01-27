@@ -10,6 +10,7 @@ import urllib.parse
 import ssl
 import shutil
 import time
+import platform
 
 addon = xbmcaddon.Addon()
 addonname = addon.getAddonInfo('name')
@@ -49,18 +50,38 @@ def delete_existing_folders():
         addons_path = xbmcvfs.translatePath('special://home/addons/')
         userdata_path = xbmcvfs.translatePath('special://home/userdata/')
 
-        # Remove the "addons" folder if it exists
-        if os.path.exists(addons_path):
-            shutil.rmtree(addons_path)
-            xbmcgui.Dialog().notification(addonname, 'Old addons folder deleted!')
+        # Function to remove read-only attributes before deletion
+        def force_remove_readonly(func, path, exc_info):
+            try:
+                os.chmod(path, stat.S_IWRITE)  # Remove read-only attribute
+                func(path)
+            except Exception as e:
+                xbmcgui.Dialog().notification('Wizard', f'Failed to delete: {path}', xbmcgui.NOTIFICATION_WARNING)
 
-        # Remove the "userdata" folder if it exists
-        if os.path.exists(userdata_path):
-            shutil.rmtree(userdata_path)
-            xbmcgui.Dialog().notification(addonname, 'Old userdata folder deleted!')
+        # Function to delete a folder safely
+        def safe_delete(folder_path):
+            try:
+                if os.path.exists(folder_path):
+                    shutil.rmtree(folder_path, onerror=force_remove_readonly)
+                    xbmcgui.Dialog().notification('Wizard', f'Deleted: {folder_path}')
+            except Exception as e:
+                xbmcgui.Dialog().notification('Wizard', f'Error deleting {folder_path}: {str(e)}', xbmcgui.NOTIFICATION_ERROR)
+
+        # Check if the OS is Windows
+        if platform.system() == 'Windows':
+            xbmcgui.Dialog().notification('Wizard', 'Attempting forced delete for Windows...')
+
+            # Force remove read-only attributes and delete
+            safe_delete(addons_path)
+            safe_delete(userdata_path)
+        else:
+            # Standard deletion process for other OS (Linux/macOS)
+            xbmcgui.Dialog().notification('Wizard', 'Deleting folders on non-Windows OS...')
+            safe_delete(addons_path)
+            safe_delete(userdata_path)
 
     except Exception as e:
-        xbmcgui.Dialog().notification(addonname, f'Error deleting folders: {str(e)}', xbmcgui.NOTIFICATION_ERROR)
+        xbmcgui.Dialog().notification('Wizard', f'Error deleting folders: {str(e)}', xbmcgui.NOTIFICATION_ERROR)
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -140,9 +161,30 @@ def delete_build_zip(build_name):
         xbmcgui.Dialog().notification('Build Wizard', f'Error deleting zip: {str(e)}', xbmcgui.NOTIFICATION_ERROR)
 
 def extract_zip(zip_path):
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(download_path)
-    xbmcgui.Dialog().notification(addonname, 'Build installed!')
+    try:
+        download_path = xbmcvfs.translatePath('special://home/')
+        
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            if platform.system() == 'Windows':
+                xbmcgui.Dialog().notification('Wizard', 'Extracting files with error handling (Windows)...')
+
+                # Attempt to extract each file individually and ignore errors
+                for file in zip_ref.namelist():
+                    try:
+                        zip_ref.extract(file, download_path)
+                    except Exception as e:
+                        xbmcgui.Dialog().notification('Wizard', f'Ignoring error: {file}', xbmcgui.NOTIFICATION_WARNING)
+
+            else:
+                # Extract normally on non-Windows OS
+                zip_ref.extractall(download_path)
+        
+        xbmcgui.Dialog().notification('Wizard', 'Build installed successfully!')
+
+    except zipfile.BadZipFile:
+        xbmcgui.Dialog().notification('Wizard', 'Error: Bad zip file.', xbmcgui.NOTIFICATION_ERROR)
+    except Exception as e:
+        xbmcgui.Dialog().notification('Wizard', f'Extraction failed: {str(e)}', xbmcgui.NOTIFICATION_ERROR)
 
 def install_build(url, build_name):
     zip_path = download_build(url, build_name)

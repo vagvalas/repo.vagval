@@ -17,8 +17,8 @@ addon_handle = int(sys.argv[1])
 
 # Define the list of builds with their URLs
 builds = [
-    {"name": "Main clean build for 20.x:", "url": None},  # Info line (dummy entry)
-    {"name": "Build20.5", "url": "https://www.dropbox.com/scl/fi/fs2b3o21z995knspxqhw4/Build205.zip?rlkey=g969w8lf81haatz3kc8guney5&st=imu6heky&dl=1"}
+    {"name": "Main clean build for 21.x:", "url": None},  # Info line (dummy entry)
+    {"name": "Build21.x", "url": "https://github.com/vagvalas/repo.vagval/releases/download/RELEASE/Build_21.x.zip"}
 ]
 
 # Define the download path (use xbmcvfs.translatePath for Kodi 19+)

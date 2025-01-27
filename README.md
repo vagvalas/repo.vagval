@@ -12,4 +12,5 @@ Also every time the repository has an update it pushes it as "repository.vagval.
 ~~TODO: Update the Repository to support the <19.0 kodi.~~
 TODO: Add a fanart and an icon pack for repo. blah...
 
-## BUGS
+## RELEASES = BUILDS
+In releases i host the build that my Wizard uses to download and extract

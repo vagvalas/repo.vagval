@@ -1,3 +1,7 @@
 [submodule "leia/plugin.video.seren"]
 	path = leia/plugin.video.seren
 	url = https://github.com/vagvalas/plugin.video.seren.git
+[submodule "matrix/plugin.video.seren"]
+	path = matrix/plugin.video.seren
+	url = https://github.com/vagvalas/plugin.video.seren.git
+	branch = dev-3.0.62d

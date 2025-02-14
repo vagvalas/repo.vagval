@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.program.vagval" version="1.5.5" name="VAGVAL's wizard" provider-name="vagvalas">
+<addon id="plugin.program.vagval" version="1.6" name="VAGVAL's wizard" provider-name="vagvalas">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
     </requires>
@@ -9,6 +9,10 @@
     <extension point="xbmc.addon.metadata">
         <summary>VagVal wizard</summary>
         <description>Download and install a custom pre-built Kodi build</description>
+        <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.png</fanart>
+        </assets>
         <platform>all</platform>
         <language>en</language>
     </extension>

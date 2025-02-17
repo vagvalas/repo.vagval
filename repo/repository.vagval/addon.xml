@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.vagval" name="VagVal's repo" version="1.3" provider-name="vagvalas">
+<addon id="repository.vagval" name="VagVal's repo" version="1.4" provider-name="vagvalas">
     <extension point="xbmc.addon.repository" name="VagVal Repository">
     <dir>
 <info compressed="false">https://raw.githubusercontent.com/vagvalas/repo.vagval/master/repo/zips/addons.xml</info>
@@ -24,7 +24,7 @@
         <platform>all</platform>
         <assets>
             <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
+            <fanart>fanart.png</fanart>
         </assets>
     </extension>
 </addon>
